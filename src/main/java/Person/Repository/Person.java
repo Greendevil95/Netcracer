@@ -27,11 +27,11 @@ public class Person {
         return gender;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
