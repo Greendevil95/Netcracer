@@ -1,16 +1,16 @@
-package Person;
+package Person.Repository;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
-class Person {
+public class Person {
     private String name;
     private String gender;
-    private int id;
-    private int age;
+    private Integer id;
+    private Integer age;
 
 
-    public Person(String name, String gender, int id, String birthDate) {
+    public Person(String name, String gender, Integer id, String birthDate) {
         this.name = name;
         this.gender = gender;
         this.id = id;

@@ -1,8 +1,8 @@
-package Person;
+package Person.Repository;
 
 import java.util.ArrayList;
 
-class PersonRepository {
+public class PersonRepository {
     private ArrayList<Person> PersonRepository = new ArrayList<Person>();
 
     public PersonRepository() {
@@ -27,7 +27,8 @@ class PersonRepository {
 
     public void showPersonRepository() {
         for (int i = 0; i < PersonRepository.size(); i++) {
-            System.out.println("Peson name: " + PersonRepository.get(i).getName() + "\nGender: " + PersonRepository.get(i).getGender() + "\nID: " + PersonRepository.get(i).getId() + "\nAge: " + PersonRepository.get(i).getAge() + "\n");
+            System.out.println("Person name: " + PersonRepository.get(i).getName() + "\nGender: " + PersonRepository.get(i).getGender() + "\nID: "
+                    + PersonRepository.get(i).getId() + "\nAge: " + PersonRepository.get(i).getAge() + "\n");
         }
     }
 }
