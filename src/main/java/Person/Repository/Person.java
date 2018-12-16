@@ -69,8 +69,6 @@ public class Person {
      * @return String with person characteristics
      */
     @Override
-    // переопределим метод toString() для печати
-    // информации об объекте Employee в читабельном виде
     public String toString() {
         return "id=" + this.id + ", name=" + this.name +
                 ", age=" + this.age + ", gender=" + this.gender + " ";

@@ -1,6 +1,8 @@
 package Person.Repository;
 
 import Person.Check.*;
+import Person.Injector.Inject;
+import Person.Injector.Injector;
 import Person.Sorters.BubbleSorter;
 import Person.Sorters.Sorter;
 
@@ -21,8 +23,12 @@ public class Repository {
     /** Array of Persons */
     public Person[] PersonRepository = new Person[initialSize];
 
+    public Repository() {
+        new Injector().inject(this);
+    }
+
     /** default sort type*/
-    private Sorter sorter = new BubbleSorter();
+    @Inject private Sorter sorter = new BubbleSorter();
 
     /**
      * @return the number of elements in the array
@@ -90,8 +96,8 @@ public class Repository {
 }
 
     /**
-     * @param index -
-     * @return
+     * @param index - person's index
+     * @return person like a string
      */
     public String print(int index) {
         Person searchRepository = PersonRepository[index];
