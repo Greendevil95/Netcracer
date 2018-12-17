@@ -1,10 +1,13 @@
 package Person.Comparator;
 
 import Person.Repository.Person;
+import org.apache.log4j.Logger;
+
 import java.util.Comparator;
 
 public class CompareByName implements Comparator<Person> {
 
+    private  static final Logger log = Logger.getLogger(CompareByName.class);
     /**
      * @param o1 - first object to compare
      * @param o2 - second object to compare
@@ -13,8 +16,14 @@ public class CompareByName implements Comparator<Person> {
     @Override
     public int compare(Person o1, Person o2) {
         if(o1 != null && o2 != null){
+            if (log.isDebugEnabled())
+            log.debug("compare Person1: " + o1.getName() + " with Person2:" + o2.getName() + " by name");
             return o1.getName()
                     .compareTo(o2.getName());
-        } else throw new NullPointerException("Unable to compare Person with null reference");
+        } else {
+            log.fatal("Unable to compare Person with null reference for name");
+            throw new NullPointerException("Unable to compare Person with null reference");
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 package Person.Injector;
 
-import Person.Repository.Repository;
+import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,12 +10,18 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
+/**
+ * @author Bondarev Denis
+ */
 public class Injector {
 
-    //private static final Logger log = Logger.getLogger(Injector.class);
+    private static final Logger log = Logger.getLogger(Injector.class);
 
+    /**
+     * @param obj - object to check for annotation
+     */
     public void inject(Object obj) {
-        //log.info("set field with annotation @inject new value");
+        log.info("set field with annotation @inject new value");
         Properties prop = new Properties();
         InputStream inp;
         try {
@@ -27,9 +33,9 @@ public class Injector {
                     Class cl = obj.getClass();
                     Field[] field = cl.getDeclaredFields();
                     value = Class.forName(prop.getProperty("Sorters.Sorter"));
-                    for (int i=0; i< field.length; i++) {
+                    for (int i = 0; i < field.length; i++) {
                         Annotation[] an = field[i].getAnnotations();
-                        for(int j=0; j< an.length; j++) {
+                        for (int j = 0; j < an.length; j++) {
                             if (an[j].toString().equals("@Person.Injector.Inject()")) {
                                 field[i].setAccessible(true);
                                 try {
@@ -41,22 +47,17 @@ public class Injector {
                         }
                     }
                 } catch (ClassNotFoundException e) {
-                   // log.error("class by name not found");
+                    log.fatal("class by name not found");
                     e.printStackTrace();
                 }
             } catch (IOException e) {
-               // log.error("can't load file");
+                log.fatal("can't load file");
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {
-           // log.error("config property not found");
+            log.fatal("config property not found");
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        Repository r = new Repository();
-        (new Injector()).inject(r);
     }
 }
 
